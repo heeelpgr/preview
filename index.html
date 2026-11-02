@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Εμπιστευτικό δείγμα</title>
+<style>
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;display:flex;align-items:center;justify-content:center;background:#1C201B;color:#F3F5EF;font:17px/1.5 "Segoe UI",Helvetica,Arial,sans-serif;padding:20px}
+main{width:100%;max-width:400px}h1{font-size:26px;font-weight:600;margin:0 0 6px}p{margin:0 0 18px;color:#C5CBBF;font-size:15px}
+label{display:block;font-size:14px;margin-bottom:6px}input{width:100%;font:inherit;padding:11px 12px;border:1px solid #A9C49A;background:#262A26;color:#fff}
+input:focus{outline:2px solid #E0A458;outline-offset:1px}button{margin-top:12px;width:100%;font:inherit;font-weight:700;padding:11px;border:0;background:#E0A458;color:#2B1E08;cursor:pointer}
+button:hover{background:#EDB56D}button:disabled{opacity:.6;cursor:default}#m{min-height:1.5em;margin:12px 0 0;font-size:14.5px;color:#F1C9A0}footer{margin-top:22px;font-size:13px;color:#8F968A}
+</style></head><body><main>
+<h1>Εμπιστευτικό δείγμα</h1><p>Βάλε τον κωδικό που σου δόθηκε.</p>
+<form id="f"><label for="k">Κωδικός</label><input id="k" type="password" autocomplete="off" autofocus required><button id="b" type="submit">Άνοιγμα</button></form>
+<p id="m" role="status"></p><footer>HEEELP, info@heeelp.eu</footer>
+</main><script>
+const S="tr6Qj5Q9ix2VUwkBjxzPMQ==",V="yFVnme+J/t9Ence1",I=600000,u=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const f=document.getElementById('f'),m=document.getElementById('m'),b=document.getElementById('b');let data=null;
+f.addEventListener('submit',async e=>{e.preventDefault();b.disabled=true;m.textContent='Ανοίγει, μισό λεπτό...';
+ try{ if(!crypto.subtle) throw new Error('subtle');
+  if(!data){const r=await fetch('d.bin');if(!r.ok) throw new Error('net');data=await r.arrayBuffer();}
+  const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(document.getElementById('k').value.trim()),'PBKDF2',false,['deriveKey']);
+  const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:u(S),iterations:I,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
+  let plain; try{plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:u(V)},key,data);}catch(x){m.textContent='Ο κωδικός δεν είναι σωστός. Δοκίμασε ξανά.';b.disabled=false;return;}
+  const html=new TextDecoder().decode(plain);document.open();document.write(html);document.close();
+ }catch(x){m.textContent=x.message==='subtle'?'Άνοιξέ το από το link, σε πρόσφατο browser.':'Δεν φορτώθηκε. Έλεγξε τη σύνδεση και δοκίμασε ξανά.';b.disabled=false;}
+});
+</script></body></html>
