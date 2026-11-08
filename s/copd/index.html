@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Εμπιστευτική επίδειξη</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;600;800&display=swap">
+<style>
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;display:flex;align-items:center;justify-content:center;background:#fff2e5;color:#33280f;font:17px/1.5 Geologica,"Segoe UI",Helvetica,Arial,sans-serif;padding:20px}
+main{width:100%;max-width:420px;background:#fffcf5;border:1.5px solid #33280f;border-radius:10px 14px 9px 13px / 13px 9px 14px 10px;box-shadow:0 5px 0 #33280f;padding:28px 26px}
+h1{font-size:27px;font-weight:800;margin:0 0 6px;color:#0d3d50;letter-spacing:-.01em}p{margin:0 0 18px;color:#5b4717;font-size:15px}
+label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}input{width:100%;font:inherit;padding:11px 12px;border:1.5px solid #33280f;border-radius:9px 12px 8px 11px / 11px 8px 12px 9px;background:#fff;color:#33280f}
+input:focus{outline:3px solid #ffa76c;outline-offset:1px}button{margin-top:14px;width:100%;font:inherit;font-weight:800;padding:11px;border:1.5px solid #33280f;border-radius:9px 12px 8px 11px / 11px 8px 12px 9px;background:#f28b3c;color:#33280f;cursor:pointer;box-shadow:0 3px 0 #33280f}
+button:hover{background:#ffa76c}button:active{transform:translateY(2px);box-shadow:0 1px 0 #33280f}button:disabled{opacity:.6;cursor:default}#m{min-height:1.5em;margin:12px 0 0;font-size:14.5px;color:#c4561c}footer{margin-top:20px;font-size:13px;color:#6b5a37}footer a{color:#1f6f94}
+</style></head><body><main>
+<h1>Εμπιστευτική επίδειξη</h1><p>Βάλτε τον κωδικό που λάβατε στο email.</p>
+<form id="f"><label for="k">Κωδικός</label><input id="k" type="password" autocomplete="off" autofocus required><button id="b" type="submit">Άνοιγμα</button></form>
+<p id="m" role="status"></p><footer>HEEELP · <a href="https://heeelp.eu">heeelp.eu</a> · info@heeelp.eu</footer>
+</main><script>
+const S="cNC3z7UjIX7XE0aT1MCSLw==",V="TVSJ6lpUBfNtHFwU",I=600000,u=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const f=document.getElementById('f'),m=document.getElementById('m'),b=document.getElementById('b');let data=null;
+f.addEventListener('submit',async e=>{e.preventDefault();b.disabled=true;m.textContent="Ανοίγει, μισό λεπτό...";
+ try{ if(!crypto.subtle) throw new Error('subtle');
+  if(!data){const r=await fetch('d.bin');if(!r.ok) throw new Error('net');data=await r.arrayBuffer();}
+  const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(document.getElementById('k').value.trim().toLowerCase()),'PBKDF2',false,['deriveKey']);
+  const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:u(S),iterations:I,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
+  let plain; try{plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:u(V)},key,data);}catch(x){m.textContent="Ο κωδικός δεν είναι σωστός. Δοκιμάστε ξανά.";b.disabled=false;return;}
+  const html=new TextDecoder().decode(plain);document.open();document.write(html);document.close();
+ }catch(x){m.textContent=x.message==='subtle'?"Ανοίξτε το από το link, σε πρόσφατο browser.":"Δεν φορτώθηκε. Ελέγξτε τη σύνδεση και δοκιμάστε ξανά.";b.disabled=false;}
+});
+const hp=location.hash.slice(1);if(hp){document.getElementById('k').value=decodeURIComponent(hp);f.requestSubmit();}
+</script></body></html>

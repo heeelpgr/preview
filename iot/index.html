@@ -13,7 +13,7 @@ button:hover{background:#ffa76c}button:active{transform:translateY(2px);box-shad
 <form id="f"><label for="k">Κωδικός</label><input id="k" type="password" autocomplete="off" autofocus required><button id="b" type="submit">Άνοιγμα</button></form>
 <p id="m" role="status"></p><footer>HEEELP · <a href="https://heeelp.eu">heeelp.eu</a> · info@heeelp.eu</footer>
 </main><script>
-const S="e5JjQls5R0Kn/tyEENx3Jw==",V="wypwlc1ti4uMOkJX",I=600000,u=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const S="JMlmmlBpVxscDLEyyNP4OA==",V="V451yl+3ZBpIWXaj",I=600000,u=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 const f=document.getElementById('f'),m=document.getElementById('m'),b=document.getElementById('b');let data=null;
 f.addEventListener('submit',async e=>{e.preventDefault();b.disabled=true;m.textContent="Ανοίγει, μισό λεπτό...";
  try{ if(!crypto.subtle) throw new Error('subtle');
@@ -24,4 +24,5 @@ f.addEventListener('submit',async e=>{e.preventDefault();b.disabled=true;m.textC
   const html=new TextDecoder().decode(plain);document.open();document.write(html);document.close();
  }catch(x){m.textContent=x.message==='subtle'?"Ανοίξτε το από το link, σε πρόσφατο browser.":"Δεν φορτώθηκε. Ελέγξτε τη σύνδεση και δοκιμάστε ξανά.";b.disabled=false;}
 });
+const hp=location.hash.slice(1);if(hp){document.getElementById('k').value=decodeURIComponent(hp);f.requestSubmit();}
 </script></body></html>
