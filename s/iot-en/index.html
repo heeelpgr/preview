@@ -13,7 +13,7 @@ button:hover{background:#ffa76c}button:active{transform:translateY(2px);box-shad
 <form id="f"><label for="k">Password</label><input id="k" type="password" autocomplete="off" autofocus required><button id="b" type="submit">Open</button></form>
 <p id="m" role="status"></p><footer>HEEELP · <a href="https://heeelp.eu">heeelp.eu</a> · info@heeelp.eu</footer>
 </main><script>
-const S="HEpWrFoZKINWvYHvDoN4mg==",V="BG/LlbiP6RK0jTvr",I=200000,u=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const S2="Tos5kG1zF5ql5rC24EWk9g==",V2="ZgiiNIxZZqvBhv6W";const S="HEpWrFoZKINWvYHvDoN4mg==",V="BG/LlbiP6RK0jTvr",I=200000,u=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 const f=document.getElementById('f'),m=document.getElementById('m'),b=document.getElementById('b');let data=null,via='typed';
 let pre=fetch('d.bin').then(r=>{if(!r.ok)throw new Error('net');return r.arrayBuffer();});pre.catch(()=>{});
 f.addEventListener('submit',async e=>{e.preventDefault();b.disabled=true;m.textContent="Opening, one moment...";
@@ -22,7 +22,7 @@ f.addEventListener('submit',async e=>{e.preventDefault();b.disabled=true;m.textC
   const pw=document.getElementById('k').value.trim().toLowerCase();
   const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
   const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:u(S),iterations:I,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
-  let plain; try{plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:u(V)},key,data);}catch(x){m.textContent="That password is not right. Please try again.";b.disabled=false;return;}
+  let plain; try{plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:u(V)},key,data);}catch(x){try{const d2=await (await fetch('d2.bin',{cache:'no-store'})).arrayBuffer();const k2=await crypto.subtle.deriveKey({name:'PBKDF2',salt:u(S2),iterations:I,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:u(V2)},k2,d2);}catch(y){m.textContent="That password is not right. Please try again.";b.disabled=false;return;}}
   try{sessionStorage.setItem('hp_pw',pw);}catch(x){} window.__hp_pw=pw;
   window.__hp_fresh=via!=='mem';
   const html=new TextDecoder().decode(plain);document.open();document.write(html);document.close();
