@@ -13,8 +13,8 @@ button:hover{background:#ffa76c}button:active{transform:translateY(2px);box-shad
 <form id="f"><label for="k">Κωδικός</label><input id="k" type="password" autocomplete="off" autofocus required><button id="b" type="submit">Άνοιγμα</button></form>
 <p id="m" role="status"></p><footer>HEEELP · <a href="https://heeelp.eu">heeelp.eu</a> · info@heeelp.eu</footer>
 </main><script>
-const S="3mGtbNG46FWTnJDEEHLpGQ==",V="2xzAWUXd/pmBbEuV",I=200000,u=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
-const f=document.getElementById('f'),m=document.getElementById('m'),b=document.getElementById('b');let data=null;
+const S="SuBrf73FNUaZy4EuwskuCQ==",V="gx2S3yr+uAUrdtYG",I=200000,u=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const f=document.getElementById('f'),m=document.getElementById('m'),b=document.getElementById('b');let data=null,via='typed';
 let pre=fetch('d.bin').then(r=>{if(!r.ok)throw new Error('net');return r.arrayBuffer();});pre.catch(()=>{});
 f.addEventListener('submit',async e=>{e.preventDefault();b.disabled=true;m.textContent="Ανοίγει, μισό λεπτό...";
  try{ if(!crypto.subtle) throw new Error('subtle');
@@ -24,8 +24,12 @@ f.addEventListener('submit',async e=>{e.preventDefault();b.disabled=true;m.textC
   const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:u(S),iterations:I,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
   let plain; try{plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:u(V)},key,data);}catch(x){m.textContent="Ο κωδικός δεν είναι σωστός. Δοκιμάστε ξανά.";b.disabled=false;return;}
   try{sessionStorage.setItem('hp_pw',pw);}catch(x){} window.__hp_pw=pw;
+  window.__hp_fresh=via!=='mem';
   const html=new TextDecoder().decode(plain);document.open();document.write(html);document.close();
  }catch(x){m.textContent=x.message==='subtle'?"Ανοίξτε το από το link, σε πρόσφατο browser.":"Δεν φορτώθηκε. Ελέγξτε τη σύνδεση και δοκιμάστε ξανά.";b.disabled=false;}
 });
-let hp=location.hash.slice(1);if(!hp){try{hp=sessionStorage.getItem('hp_pw')||'';}catch(x){}}if(hp){document.getElementById('k').value=decodeURIComponent(hp);f.requestSubmit();}
+document.getElementById('k').addEventListener('input',()=>{via='typed';});
+// the password from the link leaves the address bar at once, so it is never kept in history or counted with the page
+let hp=location.hash.slice(1);if(hp){via='hash';try{history.replaceState(null,'',location.pathname+location.search);}catch(x){}}else{try{hp=sessionStorage.getItem('hp_pw')||'';}catch(x){}if(hp)via='mem';}
+if(hp){document.getElementById('k').value=decodeURIComponent(hp);f.requestSubmit();}
 </script></body></html>
