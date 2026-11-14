@@ -29,16 +29,15 @@ html,body{height:auto;min-height:100%}body{min-height:100vh;padding:72px 16px 28
 #skform .skchk{display:flex;gap:10px;align-items:flex-start}#skform .skchk[hidden]{display:none}
 #sk_upd{flex:none;width:19px;height:19px;margin:2px 0 0;padding:0;accent-color:#f28b3c;cursor:pointer}
 #skform .skchk label{margin:0;font-weight:400;font-size:14px;line-height:1.45;color:#33280f;cursor:pointer}
-#skback.skb{display:inline-flex;align-items:center;gap:7px;padding:4px 14px 4px 9px;line-height:1.1}
+#skback.skb{display:inline-flex;align-items:center;gap:6px;padding:6px 14px 6px 9px;line-height:1.1}
 .skb-arr{flex:none;width:15px;height:15px;transition:transform .25s ease}
-.skb-logo{display:block;height:27px;width:auto}
-.skb-t{display:flex;flex-direction:column;align-items:flex-start}
-.skb-t .l1{font-size:14px;font-weight:800}
+.skb-t{font-size:14px;font-weight:800}
+.skb-wm{display:block;flex:none;height:19px;width:auto}
 #skback.skb:hover .skb-arr,#skback.skb:focus-visible .skb-arr{transform:translateX(-3px)}
-@media (max-width:620px){.skb-logo{height:24px}}
+@media (max-width:620px){.skb-t{font-size:13.5px}.skb-wm{height:18px}}
 @media (prefers-reduced-motion:reduce){.skb-arr{transition:none}}
 /*/hpask*/
-</style></head><body><!--hpask--><nav id="skbar" aria-label="heeelp.eu"><a id="skback" class="skb skb-c" href="https://heeelp.eu/#samples" aria-label="Πάμε πάλι πίσω στο heeelp.eu"><svg class="skb-arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M10.5 3 5.5 8l5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><img class="skb-logo" src="/hub-logo-gr.png" srcset="/hub-logo-gr@2x.png 2x" width="58" height="27" alt="" aria-hidden="true"><span class="skb-t"><span class="l1">Πάμε πάλι πίσω</span></span></a></nav><!--/hpask--><main>
+</style></head><body><!--hpask--><nav id="skbar" aria-label="heeelp.eu"><a id="skback" class="skb skb-c" href="https://heeelp.eu/#samples" aria-label="Πάμε πίσω στο heeelp.eu"><svg class="skb-arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M10.5 3 5.5 8l5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="skb-t">Πάμε πίσω στο</span><img class="skb-wm" src="/hub-wordmark.png" width="458" height="220" alt="heeelp!"></a></nav><!--/hpask--><main>
 <h1>Εμπιστευτική επίδειξη</h1><p>Βάλτε τον κωδικό που λάβατε στο email.</p>
 <form id="f"><label for="k">Κωδικός</label><input id="k" type="password" autocomplete="off" autofocus required><button id="b" type="submit">Άνοιγμα</button></form>
 <p id="m" role="status"></p><!--hpask--><button type="button" id="skask" aria-expanded="false" aria-controls="skform">Δεν έχετε κωδικό? Ζητήστε τον</button><form id="skform" hidden><div class="skf"><label for="sk_name">Όνομα</label><input id="sk_name" name="name" type="text" autocomplete="name" required maxlength="120"></div><div class="skf"><label for="sk_email">Email</label><input id="sk_email" name="email" type="email" autocomplete="email" required maxlength="160"></div><div class="skf"><label for="sk_org">Οργανισμός (προαιρετικό)</label><input id="sk_org" name="org" type="text" autocomplete="organization" maxlength="160"></div><div class="skf"><label for="sk_msg">Μήνυμα (προαιρετικό)</label><textarea id="sk_msg" name="message" maxlength="2000"></textarea></div><div class="skhp" aria-hidden="true"><label for="sk_web">Website</label><input id="sk_web" name="website" type="text" tabindex="-1" autocomplete="off"></div><input type="hidden" name="demo" value="video"><input type="hidden" name="lang" value="el"><div class="skf skchk"><input type="checkbox" id="sk_upd" name="updates" value="1"><label for="sk_upd">Θέλω να μαθαίνω για νέα demos. Λίγα email, μόνο όταν έχουμε κάτι καινούριο.</label></div><button type="submit" id="sksend">Αποστολή</button><p id="skconsent">Με την αποστολή συμφωνείτε να χρησιμοποιήσουμε τα στοιχεία σας για να σας στείλουμε τον κωδικό και να επικοινωνήσουμε μαζί σας για τα demos. <a href="https://heeelp.eu/privacy-policy" target="_blank" rel="noopener">Πολιτική απορρήτου</a></p></form><p id="sks" role="status" aria-live="polite"></p><!--/hpask--><footer>HEEELP · <a href="https://heeelp.eu">heeelp.eu</a> · info@heeelp.eu</footer>
