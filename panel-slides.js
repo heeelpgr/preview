@@ -32,12 +32,15 @@
     '@media (prefers-reduced-motion: reduce){.ps__slide{transition:none}}';
   document.head.appendChild(css);
 
-  fetch(box.getAttribute('data-src') || '/shots/panel/slides.json', { cache: 'no-cache' })
+  // the pictures' paths in the list are read from where the list is, not from the page (eureka, 16/11)
+  var listUrl = new URL(box.getAttribute('data-src') || '/shots/panel/slides.json', document.baseURI).href;
+  fetch(listUrl, { cache: 'no-cache' })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(build)
     .catch(function () { box.hidden = true; });
 
   function pick(o) { return o ? (o[lang] || o.en || o.el || '') : ''; }
+  function file(o) { var p = pick(o); return p ? new URL(p, listUrl).href : ''; }
 
   function build(list) {
     if (!list || !list.length) { box.hidden = true; return; }
@@ -54,7 +57,7 @@
       fig.setAttribute('role', 'group'); fig.setAttribute('aria-roledescription', lang === 'el' ? 'εικόνα' : 'slide');
       fig.setAttribute('aria-label', (i + 1) + T.of + list.length);
       var img = document.createElement('img');
-      img.src = pick(s.img); img.alt = pick(s.alt) || pick(s.cap); img.decoding = 'async';
+      img.src = file(s.img); img.alt = pick(s.alt) || pick(s.cap); img.decoding = 'async';
       if (i > 0) img.loading = 'lazy';
       img.width = 1280; img.height = 800;
       fig.appendChild(img); stage.appendChild(fig);
