@@ -13,8 +13,7 @@
   // the clip of each demo; the video card plays the overview, and omics has one per language
   function clipFor(key, lng) {
     if (key === 'video') return BASE + 'all-' + lng + '.mp4';
-    if (key === 'omics') return BASE + 'omics-' + lng + '.mp4';
-    // the Swarm AI panel waits for its new clip from claude-tool: the one in /clips still shows a real session name
+    if (key === 'omics' || key === 'panel') return BASE + key + '-' + lng + '.mp4';
     if (key === 'copd' || key === 'dicom' || key === 'iot') return BASE + key + '.mp4';
     return null;
   }
