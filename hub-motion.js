@@ -10,11 +10,11 @@
 
   var BASE = 'https://samples.heeelp.eu/clips/';
   var lang = (document.documentElement.lang || 'en').slice(0, 2) === 'el' ? 'el' : 'en';
-  // the clip of each demo; the video card plays the overview, and omics has one per language
+  // the clip of each demo; the video card plays the overview, omics and panel have one per language
   function clipFor(key, lng) {
     if (key === 'video') return BASE + 'all-' + lng + '.mp4';
     if (key === 'omics' || key === 'panel') return BASE + key + '-' + lng + '.mp4';
-    if (key === 'copd' || key === 'dicom' || key === 'iot') return BASE + key + '.mp4';
+    if (key === 'copd' || key === 'dicom' || key === 'iot' || key === 'rehab') return BASE + key + '.mp4';
     return null;
   }
 
@@ -27,9 +27,12 @@
   Array.prototype.forEach.call(document.querySelectorAll('.card'), function (card) {
     var thumb = card.querySelector('a.thumb');
     if (!thumb) return;
-    var m = /(?:^|\/)s\/([a-z0-9]+?)(-en)?\/?(?:#|$)/.exec(thumb.getAttribute('href') || '');
-    if (!m) return;
-    var src = clipFor(m[1], m[2] ? 'en' : lang);
+    var href = thumb.getAttribute('href') || '';
+    var m = /(?:^|\/)s\/([a-z0-9]+?)(-en)?\/?(?:#|$)/.exec(href);
+    // the physiotherapy demo lives at /rehab/, outside s/ (18/11)
+    var key = m ? m[1] : (/(?:^|\/)rehab\/?(?:#|$)/.test(href) ? 'rehab' : null);
+    if (!key) return;
+    var src = clipFor(key, m && m[2] ? 'en' : lang);
     if (!src) return;
     var video = null;
     thumb.classList.add('hm-box');
