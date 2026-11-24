@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>This page sank.</title><link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;600;800&display=swap" media="print" onload="this.media='all'">
+<style>
+*{box-sizing:border-box}html{min-height:100%}body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#fff2e5;color:#33280f;font:17px/1.5 Geologica,"Segoe UI",Helvetica,Arial,sans-serif;padding:72px 16px 28px}
+main{width:100%;max-width:420px;margin:auto;background:#fffcf5;border:1.5px solid #33280f;border-radius:10px 14px 9px 13px / 13px 9px 14px 10px;box-shadow:0 5px 0 #33280f;padding:28px 26px}
+h1{font-size:27px;line-height:1.2;font-weight:800;margin:0 0 8px;color:#0d3d50;letter-spacing:-.01em}p{margin:0 0 20px;color:#5b4717;font-size:15px}
+.go{display:block;text-align:center;font-weight:800;padding:11px;border:1.5px solid #33280f;border-radius:9px 12px 8px 11px / 11px 8px 12px 9px;background:#f28b3c;color:#33280f;text-decoration:none;box-shadow:0 3px 0 #33280f}
+.go:hover{background:#ffa76c}.go:active{transform:translateY(2px);box-shadow:0 1px 0 #33280f}.go:focus-visible{outline:3px solid #0d3d50;outline-offset:2px}
+.write{display:inline-block;margin:14px 0 0;color:#1f6f94;font-weight:600;font-size:15px;text-decoration:underline;text-underline-offset:3px}.write:hover{color:#0d3d50}.write:focus-visible{outline:3px solid #ffa76c;outline-offset:2px;border-radius:4px}
+footer{margin-top:20px;font-size:13px;color:#6b5a37}footer a{color:#1f6f94}
+#skbar{position:fixed;left:0;right:0;top:0;height:48px;z-index:10;display:flex;align-items:center;padding:0 12px;background:#0d3d50;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+#skback{display:inline-flex;align-items:center;gap:6px;padding:4.5px 14px 4.5px 9px;border-radius:999px;background:#fff7ea;color:#0d3d50;font:700 14px/1.1 Geologica,"Segoe UI",sans-serif;text-decoration:none}
+#skback:hover{background:#ffe7a8}#skback:focus-visible{outline:3px solid #f28b3c;outline-offset:2px}
+.skb-arr{flex:none;width:15px;height:15px;transition:transform .25s ease}.skb-t{font-size:14px;font-weight:800}.skb-wm{display:block;flex:none;height:22px;width:auto}
+#skback:hover .skb-arr,#skback:focus-visible .skb-arr{transform:translateX(-3px)}
+@media (max-width:620px){#skbar{height:44px;padding:0 8px}#skback{font-size:13.5px;padding:5px 11px 5px 8px}body{padding-top:64px}.skb-t{font-size:13.5px}.skb-wm{height:21px}}
+@media (prefers-reduced-motion:reduce){.skb-arr{transition:none}}
+</style></head><body><nav id="skbar" aria-label="heeelp.eu"><a id="skback" href="https://heeelp.eu/#samples" aria-label="Take me back to heeelp.eu"><svg class="skb-arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M10.5 3 5.5 8l5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="skb-t" id="t-back">Take me back to</span><img class="skb-wm" src="/hub-wordmark.png" width="458" height="220" alt="heeelp!"></a></nav><main>
+<h1 id="t-title">This page sank.</h1><p id="t-text">Even we couldn't save this one. The address doesn't match any page on the site.</p>
+<a class="go" id="t-home" href="/">Go to the home page</a><a class="write" id="t-write" href="mailto:info@heeelp.eu">Write to us</a>
+<footer>HEEELP · <a href="https://heeelp.eu">heeelp.eu</a> · info@heeelp.eu</footer>
+</main><script>
+// Same two versions as the 404 on heeelp.eu, one at random; Greek for Greek browsers, English for the rest.
+(function(){
+var T={
+ el:{back:"Πάμε πίσω στο",backL:"Πάμε πίσω στο heeelp.eu",home:"Στην αρχική σελίδα",write:"Γράψτε μας",
+  v:[["Αυτή η σελίδα βούλιαξε.","Αυτή δεν προλάβαμε να τη σώσουμε ούτε εμείς. Η διεύθυνση δεν αντιστοιχεί σε καμία σελίδα του site."],
+     ["Ωπ, λάθος δωμάτιο.","Αυτή η πόρτα γράφει «Κατειλημμένο». Η διεύθυνση δεν αντιστοιχεί σε καμία σελίδα του site. Πάμε πίσω, αρκετά καθίσαμε εδώ…"]]},
+ en:{back:"Take me back to",backL:"Take me back to heeelp.eu",home:"Go to the home page",write:"Write to us",
+  v:[["This page sank.","Even we couldn't save this one. The address doesn't match any page on the site."],
+     ["Oops, wrong room.","This door says “Occupied”. The address doesn't match any page on the site. Let's go back, we've stayed here long enough…"]]}
+};
+var l=((navigator.languages&&navigator.languages[0])||navigator.language||"").toLowerCase().indexOf("el")===0?"el":"en";
+var t=T[l],v=t.v[Math.random()<.5?0:1],$=function(i){return document.getElementById(i);};
+document.documentElement.lang=l;document.title=v[0];
+$("t-title").textContent=v[0];$("t-text").textContent=v[1];$("t-back").textContent=t.back;$("skback").setAttribute("aria-label",t.backL);
+$("t-home").textContent=t.home;$("t-write").textContent=t.write;
+})();
+</script></body></html>
