@@ -13,7 +13,7 @@ button:hover{background:#ffa76c}button:active{transform:translateY(2px);box-shad
 <form id="f"><label for="k">Password</label><input id="k" type="password" autocomplete="off" autofocus required><button id="b" type="submit">Open</button></form>
 <p id="m" role="status"></p><footer>HEEELP · <a href="https://heeelp.eu">heeelp.eu</a> · info@heeelp.eu</footer>
 </main><script>
-const S="A8j2pcas9UHsePaoplFjhg==",V="NRuEOXUmSx1/kvG+",I=200000,u=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const S="lMlx5XndhSCbrXYRTYFQQg==",V="bU5azOGtTRZHpAnI",I=200000,u=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 const f=document.getElementById('f'),m=document.getElementById('m'),b=document.getElementById('b');let data=null,via='typed';
 let pre=fetch('d.bin').then(r=>{if(!r.ok)throw new Error('net');return r.arrayBuffer();});pre.catch(()=>{});
 f.addEventListener('submit',async e=>{e.preventDefault();b.disabled=true;m.textContent="Opening, one moment...";
@@ -22,7 +22,7 @@ f.addEventListener('submit',async e=>{e.preventDefault();b.disabled=true;m.textC
   const pw=document.getElementById('k').value.trim().toLowerCase();
   const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
   const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:u(S),iterations:I,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
-  let plain; try{plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:u(V)},key,data);}catch(x){for(const [fn,s2,v2] of [["d2.bin", "qJZFezPVQorUy2CYHPmJKw==", "PwqFRTsPH72PHirA"], ["d3.bin", "iSDQWtW2HSp/k+WjJRMT9Q==", "EsyC9WN6Dg314hFL"], ["d4.bin", "zr5/YvTK6mnAgQdJNktsFQ==", "c58cF47v/FXy4MOC"], ["d5.bin", "FLH84maDaWU3bO/rpq9qZg==", "gmCNzE2V6EAcRSRJ"], ["d6.bin", "M2HNjp1SJeeA88gvT1mDFA==", "XG+NyBRLTrYOcbsI"], ["d7.bin", "6/Gu97kjzWRLZGrfhbYdcA==", "qiL2XTIZSb8oUw7B"], ["d8.bin", "mnBQTF8cdZFcD9D4hQaosw==", "b63rsQA8INBe2bRk"]]){try{const d2=await (await fetch(fn,{cache:'no-store'})).arrayBuffer();const k2=await crypto.subtle.deriveKey({name:'PBKDF2',salt:u(s2),iterations:I,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:u(v2)},k2,d2);break;}catch(y){}}if(!plain){m.textContent="That password is not right. Please try again.";b.disabled=false;return;}}
+  let plain; try{plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:u(V)},key,data);}catch(x){for(const [fn,s2,v2] of [["d2.bin", "viwYB///IQ21rS43Q5ogxg==", "J47/8NLiS3R55pNW"], ["d3.bin", "F5M+EAMZKbFSTzqB4fvkOg==", "+zdikbvqCP2esSWq"], ["d4.bin", "WEVFUYFKCXubftt0JjHWzQ==", "ljiNkNbMOEn8XKuZ"], ["d5.bin", "xFmYE9Oc64eUriu8hIdrog==", "kbEE7O+eWX2+9kpY"], ["d6.bin", "Zq6ibaJepBeC17q/cekmEg==", "w1bc+p2pMCfO3i+b"], ["d7.bin", "12RiuKrqxR/OII1rrE6D3Q==", "fkkYoCIbF8NwCASX"], ["d8.bin", "70pcoa3moIeUEwMfKigK5A==", "Jmael5TJwBNaVPK1"]]){try{const d2=await (await fetch(fn,{cache:'no-store'})).arrayBuffer();const k2=await crypto.subtle.deriveKey({name:'PBKDF2',salt:u(s2),iterations:I,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:u(v2)},k2,d2);break;}catch(y){}}if(!plain){m.textContent="That password is not right. Please try again.";b.disabled=false;return;}}
    window.__hp_pw=pw;
   window.__hp_fresh=via!=='mem';
   const html=new TextDecoder().decode(plain);document.open();document.write(html);document.close();
